@@ -45,7 +45,7 @@ class Share {
           'og:description': data.description ? data.description : ''
         }
       }),
-      action_type: 'og.shares',
+      action_type: 'og.likes',
       app_id: this.appId,
       next: () => {
         const parameter = serialize({
