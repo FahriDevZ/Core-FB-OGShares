@@ -26,9 +26,9 @@ Share Constructor have 2 argument.
 | 2  | string | This not redirect url, but this is url in your app, only use becaus is required. (without scheme/http/https) |
 
 #### Build parameters `share.build(data, options)`
-In build function have 2 object parameter, `data` and `options`
+In build function have 2 argument, `data` and `options`
 
-build `data` parameter use for `action_properties`
+build `data` in argument 1 use for `action_properties`
 
 | Key  | Type | Description
 | ------------- | ------------- | ------------- |
@@ -37,7 +37,7 @@ build `data` parameter use for `action_properties`
 | image  | string | Url image, is required!  |
 | description | string | Description content  |
 
-build `options` parameter is optionals
+build `options` in argument 2 is optionals
 
 | Key  | Type | Description
 | ------------- | ------------- | ------------- |
