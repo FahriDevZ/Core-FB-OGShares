@@ -26,7 +26,7 @@ class Share {
     return this;
   }
 
-  build(data, params) {
+  build(data, options) {
     if (!data.url) {
       throw new Error('Parameter URL is required');
     }
@@ -35,18 +35,32 @@ class Share {
       throw new Error('Parameter image is required');
     }
 
+    if (false == options instanceof Object) {
+      options = {};
+    }
+
+    const defaultOptions = {
+      'action_type': 'og.likes',
+      'display': 'popup', // only avaiable touch and popup
+      'version': 'v2.11'
+    };
+
+    options = Object.assign(defaultOptions, options);
+
     const connectUrl = 'https://staticxx.facebook.com/connect/xd_arbiter/r/lY4eZXm_YWu.js';
     const parameter = {
       action_properties: JSON.stringify({
         object: {
-          'og:url': data.url,
-          'og:title': data.title ? data.title : '',
-          'og:image': data.image,
-          'og:description': data.description ? data.description : ''
+          'type': 'object',
+          'url': data.url,
+          'title': data.title ? data.title : '',
+          'image': data.image,
+          'description': data.description ? data.description : ''
         }
       }),
-      action_type: 'og.likes',
+      action_type: options.action_type,
       app_id: this.appId,
+      display: options.display,
       next: () => {
         const parameter = serialize({
           version: '42#cb=f178bb82679399',
@@ -60,12 +74,12 @@ class Share {
         return decodeURIComponent(url);
       },
       sdk: 'joey',
-      version: 'v2.11',
+      version: options.version,
       '_rdc': true,
       '_rdr': ''
     };
 
-    const url = 'https://web.facebook.com/v2.11/dialog/share_open_graph?' + serialize(parameter);
+    const url = 'https://web.facebook.com/' + options.version + '/dialog/share_open_graph?' + serialize(parameter);
 
     return url;
   }

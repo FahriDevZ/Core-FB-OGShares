@@ -1,7 +1,7 @@
 {
   "name": "core-fb-ogshares",
-  "version": "1.0.1",
-  "description": "Generator sharing Facebook App link",
+  "version": "1.0.2",
+  "description": "Generator share url Facebook App",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --recursive './test/*.test.js'"
