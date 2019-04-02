@@ -1,6 +1,6 @@
 {
   "name": "core-fb-ogshares",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Generator share url Facebook App",
   "main": "index.js",
   "scripts": {

@@ -15,6 +15,18 @@ class Share {
       throw new Error('missing redirect url app!');
     }
   }
+  
+  static randomstring(L) {
+    let s = '';
+    const randomchar = () => {
+      let n = Math.floor(Math.random() * 62);
+      if (n < 10) return n; //1-10
+      if (n < 36) return String.fromCharCode(n + 55); //A-Z
+      return String.fromCharCode(n + 61); //a-z
+    };
+    while (s.length < L) s += randomchar();
+    return s;
+  }
 
   setAppId(appId) {
     this.appId = appId;
@@ -48,11 +60,17 @@ class Share {
     options = Object.assign(defaultOptions, options);
 
     const connectUrl = 'https://staticxx.facebook.com/connect/xd_arbiter/r/lY4eZXm_YWu.js';
+    const targetUrlParams = {
+      u: data.url,
+      h: Share.randomstring(23),
+      s: 1
+    };
+    const targetUrl = 'https://l.facebook.com/l.php?' + serialize(targetUrlParams);
     const parameter = {
       action_properties: JSON.stringify({
         object: {
           'type': 'object',
-          'url': data.url,
+          'url': targetUrl,
           'title': data.title ? data.title : '',
           'image': data.image,
           'description': data.description ? data.description : ''
